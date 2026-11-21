@@ -98,6 +98,3 @@ Filee/
     ├── windows/
     └── assets/
 ```
-- [ ] **Phase 8 — Release Packaging**
-
-Refer to `docs/ROADMAP.md` for full implementation details.
