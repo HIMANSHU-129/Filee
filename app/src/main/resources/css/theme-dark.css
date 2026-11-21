@@ -1,0 +1,12 @@
+/* Dark Theme - Neutral, muted, subtle glassmorphic */
+.root {
+    -color-background: #17191C;
+    -color-surface: #22252A;
+    -color-surface-elevated: #2A2D32;
+    -color-border: #383C42;
+    -color-text-primary: #E8E9EB;
+    -color-text-secondary: #A0A4AA;
+    -color-accent: #6B91C8;
+    -color-success: #5B9A68;
+    -color-error: #C85C5C;
+}

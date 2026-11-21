@@ -1,0 +1,193 @@
+/* Filee Light Theme Stylesheet */
+
+.theme-light {
+    -fx-background-color: #F2F3F5;
+}
+
+.theme-light .sidebar {
+    -fx-background-color: #E8EBF0;
+    -fx-border-color: #D3D8E0;
+}
+
+.theme-light .brand-box {
+    -fx-border-color: #D3D8E0;
+}
+
+.theme-light .brand-title {
+    -fx-text-fill: #22262C;
+}
+
+.theme-light .brand-badge {
+    -fx-background-color: #D7DEE9;
+    -fx-text-fill: #416A9E;
+    -fx-border-color: #C0CBD9;
+}
+
+.theme-light .nav-button {
+    -fx-text-fill: #616771;
+}
+
+.theme-light .nav-button:hover {
+    -fx-background-color: #DDE2EA;
+    -fx-text-fill: #1E2125;
+}
+
+.theme-light .nav-button-active {
+    -fx-background-color: #DDE3ED;
+    -fx-text-fill: #1E2125;
+    -fx-border-color: #4C75AB;
+}
+
+.theme-light .sidebar-footer {
+    -fx-background-color: #DDE2EB;
+    -fx-border-color: #CED5E0;
+}
+
+.theme-light .workspace {
+    -fx-background-color: #F5F7FA;
+}
+
+.theme-light .view-title {
+    -fx-text-fill: #20242A;
+}
+
+.theme-light .view-subtitle {
+    -fx-text-fill: #737A85;
+}
+
+.theme-light .drop-zone {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CCD3DD;
+}
+
+.theme-light .drop-zone:hover {
+    -fx-background-color: #F8FAFD;
+    -fx-border-color: #4C75AB;
+}
+
+.theme-light .drop-zone-dragover {
+    -fx-background-color: #F0F4FA;
+    -fx-border-color: #4C75AB;
+}
+
+.theme-light .drop-primary-text {
+    -fx-text-fill: #22262C;
+}
+
+.theme-light .drop-secondary-text {
+    -fx-text-fill: #707782;
+}
+
+.theme-light .btn-primary {
+    -fx-background-color: #446FA8;
+    -fx-text-fill: #FFFFFF;
+}
+
+.theme-light .btn-primary:hover {
+    -fx-background-color: #385E92;
+}
+
+.theme-light .btn-secondary {
+    -fx-background-color: #E2E6EE;
+    -fx-text-fill: #32363D;
+    -fx-border-color: #CCD3DE;
+}
+
+.theme-light .btn-secondary:hover {
+    -fx-background-color: #D5DBE5;
+    -fx-text-fill: #1C1F24;
+}
+
+.theme-light .category-badge {
+    -fx-background-color: #E8ECF2;
+    -fx-text-fill: #5A626E;
+    -fx-border-color: #D2D8E2;
+}
+
+.theme-light .file-card {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D6DCE5;
+}
+
+.theme-light .file-name-label {
+    -fx-text-fill: #20242A;
+}
+
+.theme-light .file-meta-badge {
+    -fx-background-color: #E7ECF3;
+    -fx-text-fill: #4B5565;
+}
+
+.theme-light .file-icon-box {
+    -fx-background-color: #EAF0F8;
+}
+
+.theme-light .format-section-title {
+    -fx-text-fill: #3C424C;
+}
+
+.theme-light .format-chip {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #3E4550;
+    -fx-border-color: #CFD6E0;
+}
+
+.theme-light .format-chip:hover {
+    -fx-background-color: #F2F5F9;
+    -fx-border-color: #B2BDCC;
+    -fx-text-fill: #1C2025;
+}
+
+.theme-light .format-chip-selected {
+    -fx-background-color: #E7EEF8;
+    -fx-text-fill: #244C80;
+    -fx-border-color: #446FA8;
+}
+
+.theme-light .info-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D6DCE5;
+}
+
+.theme-light .info-box-label {
+    -fx-text-fill: #757D8A;
+}
+
+.theme-light .info-box-value {
+    -fx-text-fill: #22262C;
+}
+
+.theme-light .progress-bar > .track {
+    -fx-background-color: #E2E6EE;
+}
+
+.theme-light .progress-bar > .bar {
+    -fx-background-color: #446FA8;
+}
+
+.theme-light .table-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D2D8E2;
+}
+
+.theme-light .table-view .column-header-background {
+    -fx-background-color: #E8ECF2;
+}
+
+.theme-light .table-view .column-header {
+    -fx-text-fill: #555D68;
+}
+
+.theme-light .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #22262C;
+    -fx-border-color: #E4E8EE;
+}
+
+.theme-light .table-row-cell:odd {
+    -fx-background-color: #F8FAFC;
+}
+
+.theme-light .table-row-cell:hover {
+    -fx-background-color: #EEF3FA;
+}

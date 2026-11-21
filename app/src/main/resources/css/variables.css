@@ -1,0 +1,5 @@
+/* Design system base tokens for Filee */
+.root {
+    -fx-font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    -fx-font-size: 13px;
+}

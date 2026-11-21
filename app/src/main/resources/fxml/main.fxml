@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.filee.ui.controllers.MainController"
+            prefWidth="880.0" prefHeight="620.0"
+            minWidth="720.0" minHeight="500.0"
+            fx:id="rootPane">
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox spacing="14" styleClass="sidebar">
+            <!-- Brand Box -->
+            <HBox alignment="CENTER_LEFT" spacing="8" styleClass="brand-box">
+                <SVGPath content="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
+                         fill="#6B91C8" scaleX="0.9" scaleY="0.9" />
+                <Label text="Filee" styleClass="brand-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label text="OFFLINE" styleClass="brand-badge" />
+            </HBox>
+
+            <!-- Navigation Menu -->
+            <VBox spacing="4">
+                <Button fx:id="btnNavHome" text="Home" maxWidth="Infinity"
+                        styleClass="nav-button, nav-button-active" onAction="#handleNavHome" />
+                <Button fx:id="btnNavHistory" text="Conversion History" maxWidth="Infinity"
+                        styleClass="nav-button" onAction="#handleNavHistory" />
+                <Button fx:id="btnNavSettings" text="Settings" maxWidth="Infinity"
+                        styleClass="nav-button" onAction="#handleNavSettings" />
+                <Button fx:id="btnNavAbout" text="About" maxWidth="Infinity"
+                        styleClass="nav-button" onAction="#handleNavAbout" />
+            </VBox>
+
+            <!-- Spacer -->
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- Sidebar Footer & Status -->
+            <VBox spacing="8" styleClass="sidebar-footer">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Circle fx:id="sidebarStatusDot" radius="4.0" styleClass="status-dot-active" />
+                    <VBox spacing="1">
+                        <Label fx:id="lblSidebarPythonStatus" text="Engine: Ready" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #E8E9EB;" />
+                        <Label fx:id="lblSidebarPythonDetail" text="Local Python 3" style="-fx-font-size: 10px; -fx-text-fill: #8D929A;" />
+                    </VBox>
+                </HBox>
+                <Separator />
+                <Button fx:id="btnToggleTheme" text="Toggle Light Theme" maxWidth="Infinity"
+                        styleClass="btn-secondary" onAction="#handleToggleTheme" />
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Main Workspace -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="workspace">
+
+            <!-- VIEW 1: HOME (Conversion Workspace) -->
+            <VBox fx:id="viewHome" spacing="18">
+                <!-- View Header -->
+                <VBox spacing="2">
+                    <Label text="Convert Files" styleClass="view-title" />
+                    <Label text="Private, offline format conversion without cloud dependencies" styleClass="view-subtitle" />
+                </VBox>
+
+                <!-- SECTION A: Empty State / Drop Area (when no file selected) -->
+                <VBox fx:id="emptyStateSection" spacing="16" VBox.vgrow="ALWAYS">
+                    <!-- Drop Zone -->
+                    <VBox fx:id="dropZone" alignment="CENTER" spacing="12" styleClass="drop-zone"
+                          VBox.vgrow="ALWAYS" minHeight="240.0"
+                          onDragOver="#handleDragOver" onDragDropped="#handleDragDropped"
+                          onDragEntered="#handleDragEntered" onDragExited="#handleDragExited">
+                        <SVGPath content="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"
+                                 fill="#6B91C8" scaleX="1.6" scaleY="1.6" />
+                        <Label text="Drag and drop files here" styleClass="drop-primary-text" />
+                        <Label text="or click to browse from your computer" styleClass="drop-secondary-text" />
+                        <Button fx:id="btnBrowseFiles" text="Browse Files" styleClass="btn-primary" onAction="#handleBrowseFiles" />
+                        <Label text="100% processed on-device. No data leaves your computer." styleClass="drop-secondary-text" />
+                    </VBox>
+
+                    <!-- Supported Categories Overview -->
+                    <VBox spacing="8">
+                        <Label text="Supported Format Categories:" style="-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #A0A4AA;" />
+                        <FlowPane hgap="8" vgap="8">
+                            <Label text="Images: PNG, JPG, WEBP, GIF, BMP, TIFF, ICO" styleClass="category-badge" />
+                            <Label text="Documents: PDF, DOCX, TXT, MD, HTML" styleClass="category-badge" />
+                            <Label text="Audio: MP3, WAV, AAC, FLAC, OGG" styleClass="category-badge" />
+                            <Label text="Video: MP4, MKV, WEBM, AVI, MOV" styleClass="category-badge" />
+                        </FlowPane>
+                    </VBox>
+                </VBox>
+
+                <!-- SECTION B: Selected File & Format Selection (when file IS selected) -->
+                <VBox fx:id="selectedFileSection" spacing="16" visible="false" managed="false" VBox.vgrow="ALWAYS">
+                    <!-- File Information Card -->
+                    <VBox spacing="12" styleClass="file-card">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label fx:id="lblFileCategoryBadge" text="IMAGE" styleClass="brand-badge" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Button fx:id="btnAddFiles" text="+ Add More Files" styleClass="btn-secondary" onAction="#handleAddMoreFiles" />
+                            <Button fx:id="btnChangeFile" text="Choose Different File" styleClass="btn-secondary" onAction="#handleBrowseFiles" />
+                            <Button fx:id="btnRemoveFile" text="Reset" styleClass="btn-secondary" onAction="#handleResetFile" />
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                            <StackPane styleClass="file-icon-box">
+                                <SVGPath fx:id="svgFileIcon"
+                                         content="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"
+                                         fill="#6B91C8" scaleX="1.2" scaleY="1.2" />
+                            </StackPane>
+                            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                                <Label fx:id="lblFileName" text="sample_document.png" styleClass="file-name-label" />
+                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                    <Label fx:id="lblFileExtension" text="PNG" styleClass="file-meta-badge" />
+                                    <Label fx:id="lblFileSize" text="1.45 MB" styleClass="file-meta-badge" />
+                                    <Label fx:id="lblFileType" text="Image Document" styleClass="file-meta-badge" />
+                                </HBox>
+                            </VBox>
+                        </HBox>
+
+                        <!-- File Path -->
+                        <Label fx:id="lblFilePath" text="C:\Users\path\to\file.png" styleClass="info-box-label" wrapText="true" />
+                    </VBox>
+
+                    <!-- Format Selection Area -->
+                    <VBox spacing="10">
+                        <Label text="Select Desired Output Format:" styleClass="format-section-title" />
+                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" maxHeight="120">
+                            <FlowPane fx:id="formatChipsContainer" hgap="10" vgap="10">
+                                <!-- Chips dynamically populated from FormatRegistry -->
+                            </FlowPane>
+                        </ScrollPane>
+                        <CheckBox fx:id="chkMergePdf" text="Merge all selected images into a single multi-page PDF document"
+                                  visible="false" managed="false" selected="true"
+                                  style="-fx-text-fill: #6B91C8; -fx-font-weight: 600;" onAction="#handleToggleMergePdf" />
+                    </VBox>
+
+                    <!-- Destination & Options Box -->
+                    <VBox spacing="6" styleClass="info-box">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="Planned Output Target:" styleClass="info-box-label" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Button fx:id="btnChangeOutputDir" text="Choose Folder" styleClass="btn-secondary" onAction="#handleChangeOutputFolder" />
+                        </HBox>
+                        <Label fx:id="lblDestinationPath" text="Select a target format above..." styleClass="info-box-value" wrapText="true" />
+                    </VBox>
+
+                    <!-- Action Bar -->
+                    <HBox alignment="CENTER_LEFT" spacing="14">
+                        <Button fx:id="btnConvert" text="Convert File" styleClass="btn-primary" disable="true" onAction="#handleStartConversion" />
+                        <Label fx:id="lblConversionStatus" text="Please choose a target format to proceed" styleClass="drop-secondary-text" />
+                    </HBox>
+
+                    <!-- Conversion Progress Section -->
+                    <VBox fx:id="conversionSection" visible="false" managed="false" spacing="8">
+                        <ProgressBar fx:id="conversionProgressBar" maxWidth="Infinity" progress="0.0" />
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label fx:id="lblProgressPercent" text="0%" styleClass="info-box-label"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnCancelConversion" text="Cancel" styleClass="btn-secondary" onAction="#handleCancelConversion"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Success Section -->
+                    <VBox fx:id="successSection" visible="false" managed="false" spacing="8" styleClass="info-box">
+                        <Label text="Conversion Successful" style="-fx-text-fill: #5B9A68; -fx-font-weight: bold;"/>
+                        <Label fx:id="lblSuccessPath" text="" styleClass="info-box-value" wrapText="true"/>
+                        <HBox spacing="10">
+                            <Button fx:id="btnOpenFile" text="Open File" styleClass="btn-primary" onAction="#handleOpenOutputFile"/>
+                            <Button fx:id="btnOpenFolder" text="Open Folder" styleClass="btn-secondary" onAction="#handleOpenOutputFolder"/>
+                            <Button fx:id="btnConvertAnother" text="Convert Another" styleClass="btn-secondary" onAction="#handleResetFile"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Error Section -->
+                    <VBox fx:id="errorSection" visible="false" managed="false" spacing="8" styleClass="info-box">
+                        <Label text="Conversion Failed" style="-fx-text-fill: #C85C5C; -fx-font-weight: bold;"/>
+                        <Label fx:id="lblErrorMessage" text="" styleClass="info-box-value" wrapText="true"/>
+                        <Button fx:id="btnRetryConversion" text="Retry" styleClass="btn-secondary" onAction="#handleStartConversion"/>
+                    </VBox>
+                </VBox>
+            </VBox>
+
+            <!-- VIEW 2: HISTORY VIEW -->
+            <VBox fx:id="viewHistory" spacing="16" visible="false" managed="false">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="2">
+                        <Label text="Conversion History" styleClass="view-title" />
+                        <Label text="Log of conversions processed in this session" styleClass="view-subtitle" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="btnClearHistory" text="Clear Log" styleClass="btn-secondary" onAction="#handleClearHistory" />
+                </HBox>
+
+                <TableView fx:id="historyTableView" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colHistoryId" text="ID" prefWidth="120.0" />
+                        <TableColumn fx:id="colHistoryStatus" text="Status" prefWidth="100.0" />
+                        <TableColumn fx:id="colHistoryOutput" text="Output Path" prefWidth="420.0" />
+                        <TableColumn fx:id="colHistoryDuration" text="Duration (ms)" prefWidth="120.0" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- VIEW 3: SETTINGS VIEW -->
+            <VBox fx:id="viewSettings" spacing="18" visible="false" managed="false">
+                <VBox spacing="2">
+                    <Label text="Settings" styleClass="view-title" />
+                    <Label text="Preferences and conversion behavior" styleClass="view-subtitle" />
+                </VBox>
+
+                <VBox spacing="12" styleClass="info-box">
+                    <Label text="File Output Preferences" styleClass="format-section-title" />
+                    <CheckBox fx:id="chkOverwrite" text="Overwrite existing files automatically"
+                              style="-fx-text-fill: #E8E9EB;" />
+                    <Label text="When unchecked, unique numbered filenames (e.g. file_1.ext) are generated."
+                           styleClass="drop-secondary-text" />
+                </VBox>
+
+                <VBox spacing="12" styleClass="info-box">
+                    <Label text="Theme Preference" styleClass="format-section-title" />
+                    <RadioButton fx:id="radioDarkTheme" text="Dark Theme (Default Windows Neutral)"
+                                 selected="true" style="-fx-text-fill: #E8E9EB;" />
+                    <RadioButton fx:id="radioLightTheme" text="Light Theme (Windows Standard)"
+                                 style="-fx-text-fill: #E8E9EB;" />
+                </VBox>
+
+                <VBox spacing="10" styleClass="info-box">
+                    <Label text="Conversion Engine Environment" styleClass="format-section-title" />
+                    <Label fx:id="lblSettingsPythonPath" text="Detecting Python..." styleClass="info-box-value" />
+                    <Label fx:id="lblSettingsPythonVersion" text="..." styleClass="drop-secondary-text" />
+                </VBox>
+            </VBox>
+
+            <!-- VIEW 4: ABOUT VIEW -->
+            <VBox fx:id="viewAbout" spacing="18" visible="false" managed="false">
+                <VBox spacing="2">
+                    <Label text="About Filee" styleClass="view-title" />
+                    <Label text="Desktop utility information" styleClass="view-subtitle" />
+                </VBox>
+
+                <VBox spacing="14" styleClass="info-box">
+                    <Label text="Filee Desktop Converter v0.1.0-alpha" styleClass="format-section-title" />
+                    <Label text="A fast, lightweight, offline-first Windows desktop utility for converting files without cloud uploads or external network requests."
+                           style="-fx-text-fill: #C8CDD5;" wrapText="true" />
+                    <Separator />
+                    <GridPane hgap="16" vgap="8">
+                        <Label text="Java Version:" styleClass="info-box-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Label text="Java 21 LTS (Temurin)" styleClass="info-box-value" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label text="UI Architecture:" styleClass="info-box-label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label text="JavaFX 21" styleClass="info-box-value" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                        <Label text="Conversion Engine:" styleClass="info-box-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label text="Python 3 IPC Daemon" styleClass="info-box-value" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                        <Label text="Privacy &amp; Security:" styleClass="info-box-label" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <Label text="100% Offline Processing — Zero Telemetry" styleClass="info-box-value" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    </GridPane>
+                </VBox>
+            </VBox>
+
+        </StackPane>
+    </center>
+
+</BorderPane>

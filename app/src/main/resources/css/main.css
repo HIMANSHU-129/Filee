@@ -1,0 +1,314 @@
+/* Filee Main Desktop Theme Stylesheet */
+
+/* Window Root */
+.root {
+    -fx-font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #17191C;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    -fx-background-color: #1E2125;
+    -fx-border-color: #2D3137;
+    -fx-border-width: 0 1px 0 0;
+    -fx-padding: 16px 12px;
+    -fx-pref-width: 220px;
+    -fx-min-width: 200px;
+    -fx-max-width: 240px;
+}
+
+.brand-box {
+    -fx-padding: 4px 8px 16px 8px;
+    -fx-border-color: #2D3137;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.brand-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #E8E9EB;
+}
+
+.brand-badge {
+    -fx-background-color: #2A2E35;
+    -fx-text-fill: #6B91C8;
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+    -fx-padding: 2px 6px;
+    -fx-background-radius: 4px;
+    -fx-border-color: #383E48;
+    -fx-border-radius: 4px;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #A0A4AA;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 8px 12px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #282C32;
+    -fx-text-fill: #E8E9EB;
+}
+
+.nav-button-active {
+    -fx-background-color: #2A2F37;
+    -fx-text-fill: #E8E9EB;
+    -fx-font-weight: 600;
+    -fx-border-color: #6B91C8;
+    -fx-border-width: 0 0 0 3px;
+    -fx-border-radius: 0 4px 4px 0;
+}
+
+.sidebar-footer {
+    -fx-background-color: #24272D;
+    -fx-background-radius: 6px;
+    -fx-border-color: #32373F;
+    -fx-border-radius: 6px;
+    -fx-padding: 10px;
+}
+
+/* Main Workspace */
+.workspace {
+    -fx-background-color: #17191C;
+    -fx-padding: 24px 28px;
+}
+
+.view-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #E8E9EB;
+}
+
+.view-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #8D929A;
+}
+
+/* File Drop Area */
+.drop-zone {
+    -fx-background-color: #202328;
+    -fx-background-radius: 8px;
+    -fx-border-color: #353A42;
+    -fx-border-width: 1.5px;
+    -fx-border-style: dashed;
+    -fx-border-radius: 8px;
+    -fx-padding: 36px 24px;
+    -fx-cursor: hand;
+}
+
+.drop-zone:hover {
+    -fx-background-color: #23272D;
+    -fx-border-color: #6B91C8;
+}
+
+.drop-zone-dragover {
+    -fx-background-color: #262B33;
+    -fx-border-color: #6B91C8;
+    -fx-border-width: 2px;
+}
+
+.drop-primary-text {
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #E8E9EB;
+}
+
+.drop-secondary-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #8D929A;
+}
+
+/* Buttons */
+.btn-primary {
+    -fx-background-color: #4D72A8;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: 600;
+    -fx-font-size: 13px;
+    -fx-padding: 8px 18px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #5D85C2;
+}
+
+.btn-secondary {
+    -fx-background-color: #2C3037;
+    -fx-text-fill: #D4D7DC;
+    -fx-font-weight: 500;
+    -fx-font-size: 12px;
+    -fx-padding: 6px 14px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #3C424C;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #343941;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Category Badges */
+.category-badge {
+    -fx-background-color: #22252B;
+    -fx-text-fill: #9CA1AA;
+    -fx-font-size: 11px;
+    -fx-padding: 6px 12px;
+    -fx-background-radius: 4px;
+    -fx-border-color: #32363E;
+    -fx-border-radius: 4px;
+}
+
+/* Selected File Card */
+.file-card {
+    -fx-background-color: #21242A;
+    -fx-background-radius: 6px;
+    -fx-border-color: #333840;
+    -fx-border-radius: 6px;
+    -fx-border-width: 1px;
+    -fx-padding: 16px 20px;
+}
+
+.file-name-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #E8E9EB;
+}
+
+.file-meta-badge {
+    -fx-background-color: #2B3038;
+    -fx-text-fill: #A8B2C0;
+    -fx-font-size: 11px;
+    -fx-font-weight: 500;
+    -fx-padding: 3px 8px;
+    -fx-background-radius: 4px;
+}
+
+.file-icon-box {
+    -fx-background-color: #282D35;
+    -fx-background-radius: 6px;
+    -fx-pref-width: 44px;
+    -fx-pref-height: 44px;
+    -fx-alignment: CENTER;
+}
+
+/* Format Selection Chips */
+.format-section-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #C4C8D0;
+}
+
+.format-chip {
+    -fx-background-color: #24282F;
+    -fx-text-fill: #C0C5CE;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-padding: 7px 16px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #373C45;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.format-chip:hover {
+    -fx-background-color: #2C313A;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: #4C5462;
+}
+
+.format-chip-selected {
+    -fx-background-color: #2B3747;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: 600;
+    -fx-border-color: #6B91C8;
+    -fx-border-width: 1.5px;
+}
+
+/* Info Box / Output Card */
+.info-box {
+    -fx-background-color: #1F2227;
+    -fx-background-radius: 6px;
+    -fx-border-color: #2D323A;
+    -fx-border-radius: 6px;
+    -fx-padding: 12px 16px;
+}
+
+.info-box-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #7D828C;
+}
+
+.info-box-value {
+    -fx-font-size: 12px;
+    -fx-text-fill: #C8CDD5;
+}
+
+/* Progress Bar */
+.progress-bar {
+    -fx-pref-height: 8px;
+    -fx-min-height: 8px;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #262B33;
+    -fx-background-radius: 4px;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: #4D72A8;
+    -fx-background-radius: 4px;
+}
+
+/* Status Indicator */
+.status-dot-active {
+    -fx-fill: #5B9A68;
+}
+
+.status-dot-inactive {
+    -fx-fill: #C85C5C;
+}
+
+/* Table View in History */
+.table-view {
+    -fx-background-color: #1F2227;
+    -fx-background-radius: 6px;
+    -fx-border-color: #32373F;
+    -fx-border-radius: 6px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #262930;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-font-weight: 600;
+    -fx-text-fill: #A0A4AA;
+    -fx-font-size: 12px;
+    -fx-padding: 8px;
+}
+
+.table-row-cell {
+    -fx-background-color: #1F2227;
+    -fx-text-fill: #E8E9EB;
+    -fx-border-color: #2B2F36;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #22252B;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #292D35;
+}
