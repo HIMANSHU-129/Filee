@@ -98,18 +98,3 @@ Filee/
     ├── windows/
     └── assets/
 ```
-
----
-
-## Development Roadmap & Status
-
-- [x] **Phase 1 — Project Foundation & Architecture** (Complete)
-- [ ] **Phase 2 — UI Foundation & Radial Selector** (Upcoming)
-- [ ] **Phase 3 — Core File Conversion**
-- [ ] **Phase 4 — Advanced Conversion Engines**
-- [ ] **Phase 5 — Windows Integration**
-- [ ] **Phase 6 — Advanced Functionality & Batching**
-- [ ] **Phase 7 — Optimization & Resource Minimization**
-- [ ] **Phase 8 — Release Packaging**
-
-Refer to `docs/ROADMAP.md` for full implementation details.
