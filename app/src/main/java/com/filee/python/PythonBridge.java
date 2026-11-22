@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
@@ -93,19 +94,37 @@ public class PythonBridge {
 
     private Path resolvePythonScript() {
         String userDir = System.getProperty("user.dir", ".");
-        Path[] locations = new Path[]{
-            Paths.get("src", "main", "python", "main.py"),
-            Paths.get("app", "src", "main", "python", "main.py"),
-            Paths.get("..", "app", "src", "main", "python", "main.py"),
-            Paths.get("..", "src", "main", "python", "main.py"),
-            Paths.get(userDir, "src", "main", "python", "main.py"),
-            Paths.get(userDir, "app", "src", "main", "python", "main.py"),
-            Paths.get(userDir, "..", "app", "src", "main", "python", "main.py"),
-            Paths.get("E:", "work", "Filee", "app", "src", "main", "python", "main.py")
-        };
+        List<Path> candidateRoots = new ArrayList<>();
+        candidateRoots.add(Paths.get(userDir));
+        candidateRoots.add(Paths.get("."));
+
+        try {
+            Path codeSource = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().toURI());
+            if (codeSource.getParent() != null) {
+                candidateRoots.add(codeSource.getParent());
+                if (codeSource.getParent().getParent() != null) {
+                    candidateRoots.add(codeSource.getParent().getParent());
+                }
+            }
+        } catch (Exception ignored) {}
+
+        candidateRoots.add(Paths.get("E:", "Filee"));
+        candidateRoots.add(Paths.get("E:", "Filee", "app"));
+
+        List<Path> locations = new ArrayList<>();
+        for (Path root : candidateRoots) {
+            if (root == null) continue;
+            locations.add(root.resolve("python/main.py"));
+            locations.add(root.resolve("app/python/main.py"));
+            locations.add(root.resolve("src/main/python/main.py"));
+            locations.add(root.resolve("app/src/main/python/main.py"));
+            locations.add(root.resolve("../app/src/main/python/main.py"));
+            locations.add(root.resolve("../src/main/python/main.py"));
+            locations.add(root.resolve("main.py"));
+        }
 
         for (Path loc : locations) {
-            if (Files.exists(loc)) {
+            if (Files.isRegularFile(loc)) {
                 return loc.toAbsolutePath().normalize();
             }
         }

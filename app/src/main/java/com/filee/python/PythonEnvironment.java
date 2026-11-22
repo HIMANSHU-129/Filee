@@ -59,17 +59,35 @@ public class PythonEnvironment {
         String scriptsDir = PlatformUtils.isWindows() ? "Scripts" : "bin";
         String userDir = System.getProperty("user.dir", ".");
 
-        List<Path> candidateRoots = new ArrayList<>(List.of(
-            Paths.get(".venv", scriptsDir, exeName),
-            Paths.get("venv", scriptsDir, exeName),
-            Paths.get("..", ".venv", scriptsDir, exeName),
-            Paths.get("..", "venv", scriptsDir, exeName),
-            Paths.get(userDir, ".venv", scriptsDir, exeName),
-            Paths.get(userDir, "..", ".venv", scriptsDir, exeName),
-            Paths.get("E:", "work", "Filee", ".venv", scriptsDir, exeName)
-        ));
+        List<Path> candidateRoots = new ArrayList<>();
+        candidateRoots.add(Paths.get(userDir));
+        candidateRoots.add(Paths.get("."));
 
-        for (Path candidate : candidateRoots) {
+        try {
+            Path codeSource = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().toURI());
+            if (codeSource.getParent() != null) {
+                candidateRoots.add(codeSource.getParent());
+                if (codeSource.getParent().getParent() != null) {
+                    candidateRoots.add(codeSource.getParent().getParent());
+                }
+            }
+        } catch (Exception ignored) {}
+
+        candidateRoots.add(Paths.get("E:", "Filee"));
+        candidateRoots.add(Paths.get("E:", "Filee", "app"));
+
+        List<Path> candidates = new ArrayList<>();
+        for (Path root : candidateRoots) {
+            if (root == null) continue;
+            candidates.add(root.resolve(Paths.get(".venv", scriptsDir, exeName)));
+            candidates.add(root.resolve(Paths.get("venv", scriptsDir, exeName)));
+            candidates.add(root.resolve(Paths.get("python_env", scriptsDir, exeName)));
+            candidates.add(root.resolve(Paths.get("python_env", exeName)));
+            candidates.add(root.resolve(Paths.get("..", ".venv", scriptsDir, exeName)));
+            candidates.add(root.resolve(Paths.get("..", "venv", scriptsDir, exeName)));
+        }
+
+        for (Path candidate : candidates) {
             if (Files.isRegularFile(candidate)) {
                 return Optional.of(candidate.toAbsolutePath().normalize());
             }

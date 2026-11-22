@@ -101,7 +101,6 @@ class CommandDispatcher:
             else:
                 result = {"success": False,
                           "error": f"No converter found for: {src_ext} -> {target_format}"}
-                          "error": f"No converter found for: {src_ext} -> {target_format}"}
 
             if result.get("success"):
                 MessageProtocol.send(MessageProtocol.progress(job_id, 1.0, "Complete"))
